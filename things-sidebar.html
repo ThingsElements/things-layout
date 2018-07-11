@@ -171,7 +171,7 @@ Copyright © HatioLab Inc. All rights reserved.
             <paper-listbox selected-item="{{currentMenu}}" class="content">
               <template is="dom-repeat" items="{{group.child}}" as=item filter="{{menuSearch(searchMenu)}}">
                 <a href="[[item.routing]]" on-tap="handleItemTap">
-                  <paper-item data$="{{item}}" active="[[_computeMenuActive(item, currentScreen)]]">[[item.title]]</paper-item>
+                  <paper-item data$="{{item}}" href="[[item.routing]]" active="[[_computeMenuActive(item, currentScreen)]]">[[item.title]]</paper-item>
                 </a>
               </template>
             </paper-listbox>
@@ -486,6 +486,10 @@ Copyright © HatioLab Inc. All rights reserved.
       handleItemTap: function (e) {
         if (this.isMobile) {
           this.fire('tap-menu-item');
+        }
+        if(this.isShadow){
+          e.preventDefault();
+          page('/'+e.target.href)
         }
       },
 
