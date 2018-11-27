@@ -114,6 +114,10 @@ Copyright © HatioLab Inc. All rights reserved.
 
                         // page.show('/' + menuData.routing);
                         me._registerRoutingEvent(menuData.routing, eventDetail);
+
+                        document.dispatchEvent(new CustomEvent('route-changed', {
+                          detail: app.route
+                        }))
                     });
                 }
             });
